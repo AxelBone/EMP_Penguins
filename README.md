@@ -1,31 +1,28 @@
-# EMP_Sharks
-Phylogenetic analyses of sharks species
+# EMP_Manchots
+Analyse phylogénétique d'espèces d'oiseaux pour découvrir quadn les manchots on perdu la capacité à voler.
 
 Ce dossier ne contient que les scripts pour l'analyse phylogénétique.
 
 Les étapes : 
 
-1) Setup conda env
-2) Télécharger les génomes (format : gbff)
-3) unzip
-4) extraction des traductions des régions codantes 
-5) *subset* - étape optionnelle
-6) orthofinder
-
-...
-
+0) Setup conda env
+1) Télécharger les génomes (format : gbff)
+2) Unzip
+3) Orthofinder
+4) Création des arbres de gènes
+5) Filtration
+6) Supermatrice ou super-arbres
 
 
 
-Liste des scripts brics : 
+# Etape 3 : Orthofinder
 
-- download_species.sh = Téléchargement des génomes assemblés au format gbff de différentes espèces de requins pour l'étude.
-- extract_cds_translation.py = Script python pour extraire les traductions des cds dans les fichiers gbff. s'utilise en ligne de commande de cette façon, python extract_cds_translation.py <input_file.gbff> <output_path_filename>
-- unzip_gbff.sh = Script bash pour unzip chaque fichier gbff.
-- random_prot_extractionfasta.sh = Script bash qui permet de faire un tirage aléatoire d'un certain nombre de protéines dans un fichier fasta
+Les résultats d'Orthofinder dévoilent 1327 fichiers contenant des "Séquences orthologues simples copies". C'est sur ces données que nous travaillons par la suite. 
 
-Liste des scripts pour lancer le pipeline :
 
-- main.sh = **Contiendra** le pipeline général qui lancera orthofinder et le reste des commandes
-- from_download_to_subset.sh = pipeline à partir des données brutes au format .gbff.gz jusqu'à orthofinder. Ce pipeline va dézipper, extraire les régions cds traduites, faire un sous-échantillonnage à 10 % et lancer orthofinder.
+# Etape 4 : Création des arbres de gènes
+Les arbres de gènes sont dans un premier temps créé seulement avec mafft puis iqtree dans un premier temps. Si l'on fait ça, nous avons 519 alignements vides sur 1327 soit environ 39 % des alignements qui sont inexistants. Pourquoi ces alignements ne fonctionnent ils pas ? 
 
+
+# Etape 5 : Filtration
+Le calcul de l'alignement est impossible pour 519 alignements vides. 

@@ -20,7 +20,7 @@ fi
 OUTPUT_FILE="accession_numberAndSpecies.txt"
 > "$OUTPUT_FILE"
 
-# Lire les noms d'espèces depuis le fichier CSV
+# Lire les noms d'espècesls depuis le fichier CSV
 species_names=($(cat "$INPUT_SPECIES"))
 
 # Parcourir tous les fichiers .faa dans le dossier courant
