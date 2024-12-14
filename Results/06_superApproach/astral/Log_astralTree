@@ -1,0 +1,64 @@
+
+================== ASTRAL ===================== 
+
+This is ASTRAL version 5.7.8
+Gene trees are treated as unrooted
+1122 trees read from /scratch-new/tp59985/06_SuperApproach/Astral/file_with_all_gene_trees
+index0
+All output trees will be *arbitrarily* rooted at balearica_regulorum
+
+======== Running the main analysis
+Number of taxa: 12 (12 species)
+Taxa: [balearica_regulorum, charadrius_vociferus, chauna_torquata, eublepharis_macularius, phoca_vitulina, opisthocomus_hoazin, thalassarche_chlororhynchos, eurypyga_helias, gavia_stellata, pelecanus_crispus, phaethon_lepturus, pygoscelis_adeliae]
+Taxon occupancy: {balearica_regulorum=1122, charadrius_vociferus=1122, phaethon_lepturus=1122, eurypyga_helias=1122, gavia_stellata=1122, opisthocomus_hoazin=1122, pygoscelis_adeliae=1122, pelecanus_crispus=1122, eublepharis_macularius=1122, phoca_vitulina=1122, chauna_torquata=1122, thalassarche_chlororhynchos=1122}
+Number of gene trees: 1122
+0 trees have missing taxa
+Calculating quartet distance matrix (for completion of X)
+Species tree distances calculated ...
+Building set of clusters (X) from gene trees 
+------------------------------
+gradient0: 2241
+Number of Clusters after addition by distance: 2241
+calculating extra bipartitions to be added at level 1 ...
+Adding to X using resolutions of greedy consensus ...
+Limit for sigma of degrees:350
+polytomy size limit : 9
+discarded polytomies:  [3, 4, 5, 8, 8, 9]
+Threshold 0.0:
+Threshold 0.01:
+polytomy of size 3; rounds with additions with at least 5 support: 0; clusters: 2241
+Threshold 0.02:
+polytomy of size 4; rounds with additions with at least 5 support: 0; clusters: 2241
+Threshold 0.05:
+polytomy of size 5; rounds with additions with at least 5 support: 0; clusters: 2241
+Threshold 0.1:
+polytomy of size 8; rounds with additions with at least 5 support: 0; clusters: 2241
+Threshold 0.2:
+polytomy of size 8; rounds with additions with at least 5 support: 0; clusters: 2241
+Threshold 0.3333333333333333:
+polytomy of size 9; rounds with additions with at least 5 support: 0; clusters: 2241
+max k is :0
+Number of Clusters after addition by greedy: 2241
+gradient0 in heuristiic: 2241
+partitions formed in 1.036 secs
+Dynamic Programming starting after 1.036 secs
+Using tree-based weight calculation.
+Using polytree-based weight calculation.
+Polytree max score: 555390
+Polytree building time: 1.204 seconds.
+Number of quartet trees in the gene trees: 555390
+Size of largest cluster: 12
+Greedy score: 246057
+estimationFactor: 2.2571599263585265
+Sub-optimal score: 246057
+Total Number of elements weighted: 33264
+Normalized score (portion of input quartet trees satisfied before correcting for multiple individuals): 0.4510668179117377
+Optimization score: 250518
+Optimal tree inferred in 8.201 secs.
+(charadrius_vociferus,(opisthocomus_hoazin,(balearica_regulorum,((eurypyga_helias,phaethon_lepturus),((thalassarche_chlororhynchos,(pelecanus_crispus,pygoscelis_adeliae)),(gavia_stellata,(chauna_torquata,(eublepharis_macularius,phoca_vitulina))))))));
+Final quartet score is: 250518
+Final normalized quartet score is: 0.4510668179117377
+Extended species tree:
+(balearica_regulorum,(((eurypyga_helias,phaethon_lepturus)0.7:0.023359383938074418,((thalassarche_chlororhynchos,(pelecanus_crispus,pygoscelis_adeliae)0.63:0.03427009072963618)1:0.0724414391311776,(gavia_stellata,(chauna_torquata,(eublepharis_macularius,phoca_vitulina)1:2.360319860626375)1:0.4340160980159212)0.7:0.03580713376202888)0.72:0.024298470921480363)0.68:0.021976786549712895,(opisthocomus_hoazin,charadrius_vociferus)0.46:0.009543764655177952));
+Weight calculation took 5.509821767 secs
+ASTRAL finished in 9.051 secs

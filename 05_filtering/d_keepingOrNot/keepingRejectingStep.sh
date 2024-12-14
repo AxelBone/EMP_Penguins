@@ -22,14 +22,14 @@ MAX_ALIGN=1806.0400000000004
 # Variables pour les scripts Python
 INPUT_DIR=$1
 SCRIPT_PYTHON_ALIGN="/home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/a_distribution_alignment/fasta_len.py"
-SCRIPT_PYTHON_EVODIST="realpath /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/b_distribution_fulldist/total_dist.py"
+SCRIPT_PYTHON_EVODIST="/home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/b_distribution_fulldist/total_dist.py"
 
 # Fichier de sortie
 output_file="FilesChecked.txt"
 > "$output_file"  # Effacer le fichier s'il existe déjà
 
 # Récupération des noms de base sans extension
-base_names=$(find "$INPUT_DIR" -type f -exec basename {} \; | sed 's/\(.*\)\..*/\1/' | sort -u)
+base_names=$(find "$INPUT_DIR" -type f -exec basename {} \; | grep -Eo 'N0\.[A-Z0-9]+_renamed' | sort -u)
 
 # Boucle sur chaque nom de base
 for base_name in $base_names; do

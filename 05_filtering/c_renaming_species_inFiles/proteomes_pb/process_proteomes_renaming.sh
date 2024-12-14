@@ -8,7 +8,7 @@ fi
 
 ACCESSION_SCRIPT=$1
 INPUT_DIR=$2
-INPUT_SPECIES="/home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/c_renaming_species_inFiles/dict_access_species/species_names.csv"
+INPUT_SPECIES="/home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/c_renaming_species_inFiles/dict_access_species/species_names.txt"
 
 # Vérifier si le script Python existe
 if [ ! -f "$ACCESSION_SCRIPT" ]; then

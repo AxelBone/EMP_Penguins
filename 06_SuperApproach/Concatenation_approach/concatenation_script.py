@@ -1,38 +1,41 @@
 import os
 
 # Dossier contenant les fichiers d'alignement
-input_directory = "votre_dossier_alignements"
-output_file = "supermatrice_concatenee.fasta"
+input_directory = "short_example/"  # Remplace "dossier" par le chemin réel du dossier contenant les fichiers
+output_file = "supermatrice.fa"
 
-# Liste pour stocker les fichiers d'alignement
-alignment_files = [f for f in os.listdir(input_directory) if f.endswith('.fasta')]
+# Dictionnaire pour stocker les séquences par espèce, cumulées
+sequences_by_species = {}
 
-# Fonction pour concaténer les séquences d'un fichier
-def concatener_sequences(file_path):
-    concatenated_sequence = ""
-    current_species = ""
-    
-    with open(file_path, 'r') as infile:
-        for line in infile:
-            if line.startswith(">"):
-                if current_species:
-                    # Ajouter la séquence de l'espèce précédente à la supermatrice
-                    concatenated_sequence += f">{current_species}\n{sequence}\n"
-                current_species = line.strip().split()[0][1:]  # Nom de l'espèce sans le ">"
-                sequence = ""
-            else:
-                sequence += line.strip()
-        
-        # Ajouter la dernière séquence
-        concatenated_sequence += f">{current_species}\n{sequence}\n"
-    
-    return concatenated_sequence
+# Lecture des fichiers d'alignement
+for file_name in os.listdir(input_directory):
+    if file_name.endswith(".fa"):
+        file_path = os.path.join(input_directory, file_name)
 
-# Ouvrir le fichier de sortie
-with open(output_file, 'w') as outfile:
-    for filename in alignment_files:
-        full_file_path = os.path.join(input_directory, filename)
-        concatenated_data = concatener_sequences(full_file_path)
-        outfile.write(concatenated_data)
+        with open(file_path, 'r', encoding='utf-8-sig') as file:
+            current_species = None
+            current_sequence = []
+            for line in file:
+                line = line.strip()
 
-print(f"Supermatrice concaténée générée et enregistrée dans {output_file}")
+                if line.startswith(">"):
+                    # Nettoyer le nom de l'espèce
+                    current_species = line.split("_")[0][1:].strip()  # Enlève le préfixe et les caractères spéciaux
+                    current_sequence = []
+                else:
+                    current_sequence.append(line)
+                
+                # Enregistrement de la séquence pour l'espèce
+                if current_species and current_sequence:
+                    if current_species in sequences_by_species:
+                        sequences_by_species[current_species] += ''.join(current_sequence)
+                    else:
+                        sequences_by_species[current_species] = ''.join(current_sequence)
+
+print(sequences_by_species)
+# Écriture des séquences dans un fichier de supermatrice
+with open(output_file, 'w') as output:
+    for species, sequence in sequences_by_species.items():
+        output.write(f">{species}\n{sequence}\n")
+
+print(f"Supermatrice générée : {output_file}")
