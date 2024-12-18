@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#####################################################################################
+
+# Installation des packages et création de l'environnement conda
+
+#####################################################################################
+
+
 ENV_PATH="/home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/"
 
 . /local/env/envconda.sh
@@ -8,8 +15,10 @@ ENV_PATH="/home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/"
 
 conda activate "$ENV_PATH/EMP_env"
 
-conda install -c conda-forge ncbi-datasets-cli -y
+#conda install -c conda-forge ncbi-datasets-cli -y
 
 #conda install -c conda-forge biopython
+
+
 echo "Levironnement EMP_env est activé."
 

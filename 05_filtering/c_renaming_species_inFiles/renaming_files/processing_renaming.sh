@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#####################################################################################
+
+# Renomme pour chaque fichier (soit alignement "_mafft.fa" ou arbre de gène ".treefile") le nom des séquences
+# Pour avoir "Genre_espèce" au lieu de "Genre_espèce_Numéro_d'accession"
+
+#####################################################################################
+
 . /local/env/envconda.sh
 
 conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env || {
@@ -33,12 +40,13 @@ for fichier in "$DOSSIER_ENTREE"/*; do
         # Fichier Newick
         nom_base=$(basename "$fichier")
         fichier_sortie="$DOSSIER_SORTIE/${nom_base%.treefile}_renamed.treefile"
-        python3 script.py -i "$fichier" -o "$fichier_sortie" -d "$FICHIER_DICTIONNAIRE" -f newick
+        python3 rename_accessions_in_file.py -i "$fichier" -o "$fichier_sortie" -d "$FICHIER_DICTIONNAIRE" -f newick
+
     elif [[ "$fichier" == *_mafft.fa ]]; then
         # Fichier FASTA
         nom_base=$(basename "$fichier")
         fichier_sortie="$DOSSIER_SORTIE/${nom_base%_mafft.fa}_renamed_mafft.fa"
-        python3 script.py -i "$fichier" -o "$fichier_sortie" -d "$FICHIER_DICTIONNAIRE" -f fasta
+        python3 rename_accessions_in_file.py -i "$fichier" -o "$fichier_sortie" -d "$FICHIER_DICTIONNAIRE" -f fasta
     fi
 done
 

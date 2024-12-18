@@ -1,9 +1,13 @@
 #!/bin/bash
 
+#####################################################################################
+
+# Execute le calcul de la distance évolutive totale sur un ensemble d'arbres de gènes
+
+#####################################################################################
+
 # Activer Conda
-
 . /local/env/envconda.sh
-
 conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env || {
     echo "Erreur: Impossible d'activer l'environnement Conda. Assurez-vous que le chemin est correct."
     exit 1
@@ -11,7 +15,7 @@ conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env || {
 
 # Vérifier que le bon nombre d'arguments est passé
 if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 script_python chemin/vers/fichier"
+    echo "Usage: $0 total_dist.py chemin/vers/fichier"
     exit 1
 fi
 
@@ -25,7 +29,7 @@ output_file="mean_lengthsFullDist.txt"
 for newick_file in "$INPUT_DIR"*.treefile; do ### VOIR EXTENSION
     if [ -f "$newick_file" ]; then
         echo "Processing $newick_file..."
-        full_dist=$(python3 "$SCRIPT_PYTHON" "$newick_file")
+        full_dist=$(python3 "$SCRIPT_PYTHON" "$newick_file") # Stocke la distance calculée par le script total_dist.py pour la mettre dans un fichier.
         echo "$full_dist" >> "$output_file"
     else
         echo "Le fichier $newick_file n'existe pas ou est inaccessible."
@@ -34,7 +38,6 @@ done
 
 echo "Toutes les valeurs moyennes ont été sauvegardées dans : $output_file"
 
+echo "Représentation distrib"
 
-echo "Calcul distrib"
-
-python3 /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/b_distribution_fulldist/plot_distribution.py "$output_file"
+python3 /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/b_distribution_fulldist/plot_distribution.py "$output_file" # Lance la représentation de la distribution sur l'ensemble des données calculées

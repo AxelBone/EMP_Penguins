@@ -1,3 +1,10 @@
+
+#####################################################################################
+
+# Affichage des longueurs moyennes calculées sur les alignements et de différentes statistiques.
+
+#####################################################################################
+
 import sys
 import numpy as np
 import matplotlib.pyplot as plt

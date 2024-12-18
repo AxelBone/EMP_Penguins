@@ -1,8 +1,26 @@
+#####################################################################################
+
+# Renomme les noms des séquences d'un fichier fasta (d'alignement ou pas) ou d'un fichier filetree
+# Sauvegarde le fichier renommé dans un autre fichier de sortie
+
+#####################################################################################
+
 import argparse
 from Bio import Phylo
 from io import StringIO
 
 def rename_accessions_in_tree(input_file, output_file, accession_to_species):
+    """
+    Renomme les numéros d'accession dans un arbre phylogénétique Newick en les associant à leur espèce.
+
+    Paramètres :
+        input_file (str) : Le chemin du fichier Newick d'entrée.
+        output_file (str) : Le chemin du fichier Newick de sortie avec les noms mis à jour.
+        accession_to_species (dict) : Un dictionnaire associant les numéros d'accession aux noms d'espèces.
+
+    Retourne :
+        None : Le fichier Newick modifié est sauvegardé dans le fichier de sortie.
+    """
     # Lire le fichier Newick
     with open(input_file, 'r') as f:
         newick_data = f.read()
@@ -10,8 +28,14 @@ def rename_accessions_in_tree(input_file, output_file, accession_to_species):
     # Parse le fichier avec Biopython
     tree = Phylo.read(StringIO(newick_data), "newick")
     
-    # Renommer les taxons
+    # Fonction interne pour renommer les taxons dans l'arbre
     def rename_clade(clade):
+        """
+        Renomme un clade en utilisant le dictionnaire accession_to_species.
+
+        Paramètre :
+            clade : Un objet Clade de Biopython représentant un noeud ou une feuille de l'arbre.
+        """
         if clade.name in accession_to_species:
             species_name = accession_to_species[clade.name]  # Nom d'espèce sans espace
             clade.name = f"{species_name}_{clade.name}"  # Format "nom_espèce_num_accession"

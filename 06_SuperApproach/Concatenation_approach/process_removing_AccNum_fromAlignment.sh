@@ -1,9 +1,15 @@
 #!/bin/bash
 
+#####################################################################################
+
+# Retrait des numéros d'accession pour chaque fichier filtré
+
+#####################################################################################
+
 # Chemins vers les dossiers
 INPUT_DIR=$1  # Dossier contenant les fichiers d'entrée
 OUTPUT_DIR=$2 # Dossier pour enregistrer les fichiers modifiés
-PYTHON_SCRIPT=$3 # Chemin vers le script Python
+PYTHON_SCRIPT=$3 # Chemin vers le script Python soit remove_AccNum_fromAlignment
 
 # Vérifier que les arguments sont fournis
 if [ -z "$INPUT_DIR" ] || [ -z "$OUTPUT_DIR" ] || [ -z "$PYTHON_SCRIPT" ]; then

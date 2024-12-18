@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# Activer Conda
+#####################################################################################
 
+# Execute le calcul de la distribution des longueurs d'alignements 
+# Lance une représentation sous la forme d'un histogramme
+
+#####################################################################################
+
+# Activer Conda
 . /local/env/envconda.sh
 
 conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env || {
@@ -11,7 +17,7 @@ conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env || {
 
 # Vérifier que le bon nombre d'arguments est passé
 if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 script_python chemin/vers/fichier"
+    echo "Usage: $0 fasta_len.py chemin/vers/fichier"
     exit 1
 fi
 
@@ -25,8 +31,8 @@ output_file="mean_lengthsAlignment.txt"
 for fasta_file in "$INPUT_DIR"*_mafft.fa; do
     if [ -f "$fasta_file" ]; then
         echo "Processing $fasta_file..."
-        mean_length=$(python3 "$SCRIPT_PYTHON" "$fasta_file")
-        echo "$mean_length" >> "$output_file"
+        mean_length=$(python3 "$SCRIPT_PYTHON" "$fasta_file") # Stocke la longueur de l'alignement calculée par le script "fasta_len.py".
+        echo "$mean_length" >> "$output_file" # stocke toutes les longueurs d'alignement dans un fichier
     else
         echo "Le fichier $fasta_file n'existe pas ou est inaccessible."
     fi
@@ -37,4 +43,4 @@ echo "Toutes les valeurs moyennes ont été sauvegardées dans : $output_file"
 
 echo "Calcul distrib"
 
-python3 /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/a_distribution_alignment/plot_distribution.py "$output_file"
+python3 /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/scripts_exec/05_filtering/a_distribution_alignment/plot_distribution.py "$output_file" # Lance la représentation de la distribution sur l'ensemble des données calculées

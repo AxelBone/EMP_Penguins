@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#####################################################################################
+
+# Créer un fichier contenant les noms des fichiers qui passent les différents tests (taille d'alignement 
+# et distance évolutive).
+
+#####################################################################################
+
 # Activer Conda
 source /local/env/envconda.sh
 
@@ -14,7 +21,7 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-# Valeurs de filtration
+# Valeurs de filtration issues des calculs de distribution des dossiers a_distribution_alignment et b_distribution_fulldist
 MAX_EVO_DIST=39.638706946780005
 MIN_ALIGN=199.0
 MAX_ALIGN=1806.0400000000004

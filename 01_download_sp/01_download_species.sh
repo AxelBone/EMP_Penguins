@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#####################################################################################
+
+
+# Téléchargement des génomes des espèces d'intérêt pour l'étude.
+
+#####################################################################################
+
 . /local/env/envconda.sh
 
 conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env

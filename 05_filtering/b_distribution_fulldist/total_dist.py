@@ -1,3 +1,9 @@
+#####################################################################################
+
+# Calcul de la distance évolutive totale d'un arbre de gène
+
+#####################################################################################
+
 from Bio import Phylo
 from itertools import combinations
 from io import StringIO
@@ -20,6 +26,15 @@ def read_tree(input_file):
 
 
 def calculate_total_dist(tree):
+    """
+    Calcule la somme des distances entre toutes les paires d'espèces dans un arbre phylogénétique.
+
+    Paramètre :
+        tree : Un objet représentant l'arbre phylogénétique (par exemple, un objet de type Bio.Phylo.BaseTree.Tree).
+
+    Retourne :
+        La somme totale des distances entre toutes les paires d'espèces dans l'arbre.
+    """
     # Récupérer toutes les espèces
     species = [leaf.name for leaf in tree.get_terminals()]
 

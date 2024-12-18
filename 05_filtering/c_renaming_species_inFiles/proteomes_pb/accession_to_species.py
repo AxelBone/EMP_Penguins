@@ -1,19 +1,49 @@
+#####################################################################################
+
+# Attribue pour chaque numéro d'accession d'un protéome le nom de genre et l'espèce
+
+#####################################################################################
+
 import re
 import argparse
 
 # Fonction pour extraire les numéros d'accession depuis un fichier FASTA
 def extract_accession_numbers(file_path):
+    """
+    Extrait les numéros d'accession des en-têtes d'un fichier FASTA.
+
+    Paramètre :
+        file_path (str) : Le chemin du fichier FASTA.
+
+    Retourne :
+        list : Une liste de numéros d'accession extraits des lignes d'en-tête.
+    """
+
     accession_numbers = []
+
     with open(file_path, 'r') as file:
         for line in file:
             if line.startswith('>'):  # Ligne d'en-tête FASTA
-                match = re.match(r'>\s*([\w\.]+)', line)
+                match = re.match(r'>\s*([\w\.]+)', line) # Regex pour détecter numéro d'accession
                 if match:
+                    # Ajouter le numéro d'accession extrait à la liste
                     accession_numbers.append(match.group(1))
+
+    # Retourner la liste des numéros d'accession
     return accession_numbers
 
 # Fonction pour créer un dictionnaire accession -> espèce
 def create_accession_species_dict(file_path, species_name):
+    """
+    Crée un dictionnaire associant chaque numéro d'accession à un nom d'espèce standardisé.
+
+    Paramètres :
+        file_path (str) : Le chemin du fichier FASTA.
+        species_name (str) : Le nom de l'espèce à associer aux numéros d'accession.
+
+    Retourne :
+        dict : Un dictionnaire où les clés sont les numéros d'accession et les valeurs sont le nom d'espèce.
+    """
     # Transformer le nom de l'espèce en format standardisé
     species_name = species_name.lower().replace(' ', '_')
     accession_numbers = extract_accession_numbers(file_path)

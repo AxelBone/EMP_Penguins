@@ -4,6 +4,12 @@
 #SBATCH --cpus-per-task=20  # Number of CPUs per task
 #SBATCH --mem=30G
 
+#####################################################################################
+
+# Inférence des arbres de gènes après alignements et nettoyage de cet alignement.
+
+#####################################################################################
+
 . /local/env/envconda.sh
 
 conda activate /home/genouest/tp_emp_tps_40958/tp59985/EMP/TP5-8/EMP_env || {

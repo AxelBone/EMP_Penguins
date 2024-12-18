@@ -1,3 +1,10 @@
+#####################################################################################
+
+# Affichage des distances évolutives totales calculées, et de différentes statistiques
+# sur les arbres de gènes.
+
+#####################################################################################
+
 import sys
 import numpy as np
 import matplotlib.pyplot as plt

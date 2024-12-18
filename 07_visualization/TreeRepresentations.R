@@ -1,11 +1,10 @@
+## Visualisation des arbres
+
 library(ape)
 library(Biostrings)
 library(ggtree)
 library(tidytree)
 library(tidyverse)
-
-
-
 
 nwk <- "Results/06_superApproach/superMatrix_cleaned.fa.contree"
 
@@ -13,19 +12,6 @@ tree <- read.tree(nwk)
 
 tree <- root(tree, outgroup = c("phoca_vitulina", "eublepharis_macularius"), resolve.root = TRUE)
 
-
-tip_names <- c("phoca_vitulina" = "Phoca vitulina (Carnivora)",
-               "eublepharis_macularius" = "Eublepharis macularius (Squamata)",
-               "balearica_regulorum" = "Balearica regulorum (Gruiformes)",   # Remplacez "leaf1" par vos noms réels
-               "charadrius_vociferus" = "Charadrius vociferus (Charadriiformes)",
-               "chauna_torquata" = "Chauna torquata (Anseriformes)",
-               "opisthocomus_hoazin" = "Opisthocomus hoazin (Opisthocomiformes)",
-               "eurypyga_helias" = "Eurypyga helias (Eurypygiformes)",
-               "phaethon_lepturus" = "Phaethon lepturus (Phaethontiformes)",
-               "gavia_stellata" = "Gavia stellata (Gaviiformes)",
-               "pelecanus_crispus" = "Pelecanus crispus (Pelecaniformes)",
-               "pygoscelis_adeliae" = "Pygoscelis adeliae (Sphenisciformes)",
-               "thalassarche_chlororhynchos" = "Thalassarche chlororhynchos (Procellariiformes)")
 
 old_names = c("phoca_vitulina",
                "eublepharis_macularius",
@@ -65,7 +51,7 @@ tree_renamed <- rename_tips(tree, old_names, new_names)
 
 
 
-p <- ggtree(tree, ladderize = TRUE) + 
+p <- ggtree(tree_renamed, ladderize = TRUE) + 
   geom_tiplab(size = 3) +              # Ajouter les noms des tips
   theme_tree2() +                      # Style épuré pour le rendu
   xlim(NA, 2) +                        # Ajuster les limites de l'axe des x

@@ -1,3 +1,9 @@
+####################################################################################
+
+# Script pour concaténer tous les fichiers d'alignement sous la forme d'une supermatrice en regroupant grâce au nom d'espèce
+
+#####################################################################################
+
 import argparse
 import os
 import re
